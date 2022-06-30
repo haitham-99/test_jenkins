@@ -24,7 +24,6 @@ def driver():
     if browser_name == "firefox-webdriver":
         driver = webdriver.Firefox(service=ser_firefox)
     elif browser_name == "firefox":
-        firefox_options.add_argument("--headless")
         dc = {
             "browserName": "firefox",
             # "browserVersion": "101.0.1(x64)",
@@ -32,8 +31,7 @@ def driver():
         }
         driver = webdriver.Remote("http://localhost:4444", desired_capabilities=dc, options=firefox_options)
     elif browser_name == "chrome":
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("-disable-gpu")
+
         dc = {
             "browserName": "chrome",
             "platformName": "Windows 11"
@@ -41,8 +39,6 @@ def driver():
         driver = webdriver.Remote("http://localhost:4444", desired_capabilities=dc, options=chrome_options)
 
     elif browser_name == "Edge":
-        edge_options.add_argument("--headless")
-        edge_options.add_argument("-disable-gpu")
         dc = {
             "browserName": "Microsoft Edge",
             "platformName": "Windows 11"
@@ -50,7 +46,6 @@ def driver():
         driver = webdriver.Remote("http://localhost:4444", desired_capabilities=dc, options=edge_options)
 
     elif browser_name == "firefox-mobile":
-        firefox_options.add_argument("--headless")
         firefox_options = FireFoxOptions()
         firefox_options.add_argument("--width=375")
         firefox_options.add_argument("--height=812")
@@ -94,4 +89,3 @@ def test_title(driver):
     driver.get("https://www.google.com/")
     title = driver.title
     assert title == "Google"
-    driver.save_screenshot("screen1.png")
