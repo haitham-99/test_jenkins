@@ -13,7 +13,7 @@ def driver():
     ser_firefox = FirefoxService(firefox_driver_binary)
     firefox_options = FireFoxOptions()
 
-    chrome_options = ChromeOptions()
+    chrome_options = webdriver.ChromeOptions()
 
     edge_driver_binary = "msedgedriver.exe"
     edge_options = EdgeOptions()
