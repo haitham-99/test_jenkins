@@ -1,5 +1,5 @@
 import pytest
-
+import sys
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FireFoxOptions
 from selenium.webdriver.firefox.service import Service as FirefoxService
@@ -7,11 +7,33 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 
 
+# @pytest.fixture(scope="session")
+# def my_option(pytestconfig):
+#     return pytestconfig.getoption("pytest")
+
+
+# @pytest.fixture()
+# def my_option2(request, chrome_options):
+#     if not request.config.getoption("--headless"):
+#         chrome_options.add_argument("--window-size=2560,1440")
+#         # any other config values to be ran when not headless
+#     else:
+#         chrome_options.add_argument("--headless")
+#         # any other config values to be ran when headless
+#     return chrome_options
+
+
 @pytest.fixture()
-def driver():
+def driver(request):
     firefox_driver_binary = "./drivers/geckodriver"
     ser_firefox = FirefoxService(firefox_driver_binary)
     firefox_options = FireFoxOptions()
+    # if my_option == "headless":
+    # here is the optional and the get option in conftest file
+    if not request.config.getoption("--headless"):
+        firefox_options.add_argument("--window-size=2560,1440")
+    else:
+        firefox_options.add_argument("--headless")
 
     chrome_options = webdriver.ChromeOptions()
 
@@ -88,5 +110,4 @@ def driver():
 def test_title(driver):
     driver.get("https://www.google.com/")
     title = driver.title
-
     assert title == "Google"
