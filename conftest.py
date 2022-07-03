@@ -2,11 +2,7 @@ import pytest
 
 import argparse
 
-
-# def pytest_addoption(parser):
-#
-#     parser.addoption("--pytest", action="store")
-def pytest_addopts(parser):
+def pytest_addoption(parser):
     parser.addoption(
         "--headless",
         action="store_true",
