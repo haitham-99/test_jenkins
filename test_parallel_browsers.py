@@ -30,6 +30,7 @@ def driver(request):
     if browser_name == "firefox-webdriver":
         driver = webdriver.Firefox(service=ser_firefox)
     elif browser_name == "firefox":
+
         dc = {
             "browserName": "firefox",
             # "browserVersion": "101.0.1(x64)",
@@ -45,6 +46,7 @@ def driver(request):
         driver = webdriver.Remote("http://localhost:4444", desired_capabilities=dc, options=chrome_options)
 
     elif browser_name == "Edge":
+
         dc = {
             "browserName": "Microsoft Edge",
             "platformName": "Windows 11"
