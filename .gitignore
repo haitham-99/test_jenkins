@@ -7,3 +7,6 @@ chromedriver.exe
 geckodriver.exe
 msedgedriver.exe
 geckodriver.log
+report.html
+report.xls
+report.xml
